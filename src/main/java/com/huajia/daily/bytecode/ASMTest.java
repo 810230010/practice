@@ -3,6 +3,7 @@ package com.huajia.daily.bytecode;
 import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.MethodVisitor;
 import jdk.internal.org.objectweb.asm.Opcodes;
+import jdk.internal.org.objectweb.asm.Type;
 
 import java.lang.reflect.Method;
 
@@ -26,6 +27,7 @@ public class ASMTest {
 
     public static byte[] generateHelloWorldBytes() {
         ClassWriter classWriter = new ClassWriter(0);
+        // visit的参数：jdk版本，类的访问权限符，类的全限定名，泛型，父类，继承的类
         classWriter.visit(Opcodes.V1_8,
                 Opcodes.ACC_PUBLIC,
                 "com/huajia/daily/bytecode/HelloWorld",
@@ -70,6 +72,8 @@ public class ASMTest {
             return clazz;
         }
 
-
+        public Class<?> defineClass(String name, byte[] classBytes) {
+            return defineClass(name, classBytes, 0, classBytes.length);
+        }
     }
 }
