@@ -107,3 +107,31 @@ ClassReader->ClassVisitor->ClassWriter
 - ClassPool
 - CtClass
 - CtMethod
+
+### AspectJ
+#### 介绍
+主要就是在编译时期，将aspect织入代码。
+
+
+### Cglib
+#### 介绍
+cglib是基于asm实现的字节码增强工具，其不需要像jdk的动态代理，需要动态代理的类实现接口。对于singleton的代理对象或者具有实例池的代理，因为无需频繁的创建代理对象，所以比较适合采用CGLib动态代理，反正，则比较适用JDK动态代理。
+
+### JdkProxy
+#### 介绍
+jdk代理需要代理类实现接口。
+生成代理对象的方法调用链为Proxy.newProxyInstance()-------->getProxyClass0()------->ProxyClassFactory.apply()-------->ProxyGenerator.generateProxyClass()。
+代理类在调用方法的时候，会委托给InvocationHandler的invoke方法，这一步的实现过程是在ProxyGenerator.generateProxyClass中，设置的。
+
+    //$Proxy0继承了Proxy，且将InvocationHandler h在构造时传给了Proxy。
+    //因此，super.h.invoke(this, m3, (Object[])null)其实就是调用的invoker handler的invoke方法。
+    //也正是像InvocationHandler定义中所说的，【当proxy instance的方法被调用时，方法调用将会委派为invocation handler的invoke方法】。
+    public final void request() throws Exception {
+        try { 
+            super.h.invoke(this, m3, (Object[])null);
+        } catch (Exception | Error var2) {
+            throw var2;
+        } catch (Throwable var3) {
+            throw new UndeclaredThrowableException(var3);
+        }
+    }
