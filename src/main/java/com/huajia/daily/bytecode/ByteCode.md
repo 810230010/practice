@@ -1,5 +1,8 @@
 ## 字节码技术
 ### ASM
+**介绍**
+- 在加载类字节码之前修改
+
 **类描述符**
 - boolean Z
 - char C
@@ -97,4 +100,10 @@ public class AddFieldAdapter extends ClassVisitor {
 ClassReader->ClassVisitor->ClassWriter
 
 **可以使用ASM bytecode viewer查看**
-### JavaAssist
+### JavaAssis
+#### 介绍
+可以在编译期，也可以在运行期修改并重新加载字节码(HotSwapper)。默认情况下，jvm是不允许重新加载javassist修改的类的，需要java agent才能支持。
+#### 关键的一些类
+- ClassPool
+- CtClass
+- CtMethod
