@@ -135,3 +135,16 @@ jdk代理需要代理类实现接口。
             throw new UndeclaredThrowableException(var3);
         }
     }
+ 
+### Instrument
+#### 介绍
+配合java的agent技术，可以进行jvm启动前的instrument(main函数运行之前)，在类被载入之前会被设置的agent拦截，进行字节码的修改；也可以在启动之后进行instrument(main方法运行之后)，和业务代码进行解藕。配合字节码增强工具使用。
+
+#### 实现步骤
+**创建agent jar包**
+- 新建agent类
+- agent类加入premain/agentmain方法
+- 实现ClassFileTransformer，instrmentation.add(classFileTransformer)
+- 新增一个maven jar plugin，并在配置中配置premain或者agentmain class
+- mvn install
+- 业务项目运行参数添加-javaagent:agent jar包路径=agent参数

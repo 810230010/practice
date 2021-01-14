@@ -3,7 +3,6 @@ package com.huajia.daily.bytecode;
 import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.MethodVisitor;
 import jdk.internal.org.objectweb.asm.Opcodes;
-import jdk.internal.org.objectweb.asm.Type;
 
 import java.lang.reflect.Method;
 
