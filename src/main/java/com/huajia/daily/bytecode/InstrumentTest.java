@@ -1,6 +1,6 @@
 package com.huajia.daily.bytecode;
 
-import com.huajia.common.Spy;
+//import com.huajia.common.Spy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * @create: 2020-11-17 11:20
  **/
 public class InstrumentTest {
-    @Spy
+//    @Spy
     public static void test() throws Exception{
         Thread.sleep(1000);
     }
