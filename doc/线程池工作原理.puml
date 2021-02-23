@@ -1,0 +1,19 @@
+@startuml
+start
+:新任务到来;
+if(工作线程 < 核心线程 ?) then(YES)
+    :创建工作线程;
+else(NO)
+    if(队列已满?) then (YES)
+        if(救急线程 + 工作线程 > 最大线程?) then (YES)
+            :拒绝策略;
+        else(NO)
+            :创建救急线程;
+        endif
+    else(NO)
+        :放入队列;
+    endif
+endif
+
+stop
+@enduml
