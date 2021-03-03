@@ -1,5 +1,7 @@
 package com.huajia.daily.algorithm;
 
+import com.huajia.daily.reflection.User;
+
 import java.util.Arrays;
 
 public class InsertSort {
